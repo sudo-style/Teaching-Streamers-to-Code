@@ -179,3 +179,11 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Project-specific files
+Funny Stuff/
+Air Horn.wav
+Discord Ping.mp3
+Fart.mp3
+Rifle Shot.mp3
+Toilet Flush.mp3
