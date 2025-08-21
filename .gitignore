@@ -128,7 +128,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.venv/.env
 .venv
 env/
 venv/
@@ -187,3 +187,11 @@ Discord Ping.mp3
 Fart.mp3
 Rifle Shot.mp3
 Toilet Flush.mp3
+/Sound Effects/vine-boom.mp3
+/Sound Effects/Yippee.mp3
+/.env
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/Teaching-Streamers-to-Code.iml
+/.idea/vcs.xml
