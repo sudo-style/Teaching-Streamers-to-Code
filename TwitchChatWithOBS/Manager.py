@@ -10,6 +10,7 @@ class Manager:
         self.actions = {'!join':self.joinStory,
                         '!unjoin':self.unjoinStory,
                         '!tts':self.readMessage}
+        self.state = {'dev_mode':True}
 
     def readMessage(self, username, message):
         print("entering read message")
@@ -30,8 +31,9 @@ class Manager:
         self.obswebsockets_manager.set_scene("Twitch Plays")
         time.sleep(5)
 
-        # todo this is only when in dev mode
-        self.obswebsockets_manager.set_scene("Scene-Code")
+        # goes back to code scene if streaming
+        if self.state['dev_mode']:
+            self.obswebsockets_manager.set_scene("Scene-Code")
 
     def joinStory(self, username, message):
         self.userJoined[username] = True
