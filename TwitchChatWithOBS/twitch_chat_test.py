@@ -1,6 +1,7 @@
 import socket
 from chatMessage import *
 from obs_websockets import *
+from Manager import *
 
 # === CONFIG ===
 server = 'irc.chat.twitch.tv'
@@ -17,6 +18,8 @@ sock.send(f"NICK {nickname}\n".encode('utf-8'))
 sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 print(f"Connected to {channel}. Listening for chat...")
+
+manager = Manager()
 
 # === LISTEN LOOP ===
 while True:
@@ -36,18 +39,10 @@ while True:
             username = prefix.split("!")[0][1:]  # remove leading :
             message = trailing.split(" :", 1)[1]
 
-            chatMessage(username, message)
+
+            manager.addMessage(message)
+            time.sleep(1)
+            manager.showStory()
+
         except Exception as e:
             print("Error parsing message:", resp, e)
-
-    if "USERNOTICE" in resp:
-        tags_part, rest = resp.split(" ", 1)
-        tags = {tag.split("=")[0]: tag.split("=")[1] if "=" in tag else "" for tag in tags_part.lstrip("@").split(";")}
-
-        msg_id = tags.get("msg-id", "")
-        if msg_id == "raid":
-            raider = tags.get("msg-param-displayName", "")
-            viewer_count = tags.get("msg-param-viewerCount", "0")
-            print(f"Raid detected! {raider} is raiding with {viewer_count} viewers!")
-            # do something here, e.g., trigger a welcome message
-            raid(raider, viewer_count)

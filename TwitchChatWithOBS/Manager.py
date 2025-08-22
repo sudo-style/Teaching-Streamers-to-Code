@@ -3,15 +3,16 @@ from rich import print
 
 class Manager:
     def __init__(self):
-        self.data = ""
+        self.story = ""
         self.obswebsockets_manager = OBSWebsocketsManager()
 
     def addMessage(self, message):
-        self.data += f" {message}"
+        message = message.strip()
+        self.story += f" {message}"
 
     def showStory(self):
         # updates the text of the story
-        self.obswebsockets_manager.set_text("Story", f"story: {self.data}")
+        self.obswebsockets_manager.set_text("Story", f"story: {self.story}")
         time.sleep(1)
 
         # shows the scene
