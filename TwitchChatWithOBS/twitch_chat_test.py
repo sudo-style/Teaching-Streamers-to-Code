@@ -1,5 +1,3 @@
-# this works
-
 import socket
 from chatMessage import *
 from obs_websockets import *

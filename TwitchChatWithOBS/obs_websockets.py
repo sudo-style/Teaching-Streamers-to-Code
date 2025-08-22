@@ -1,5 +1,3 @@
-# this works
-
 import time
 from obswebsocket import obsws, requests  # noqa: E402
 from dotenv import load_dotenv
@@ -63,20 +61,13 @@ class OBSWebsocketsManager:
         transform["scaleY"] = response.datain["sceneItemTransform"]["scaleY"]
         transform["rotation"] = response.datain["sceneItemTransform"]["rotation"]
         transform["sourceWidth"] = response.datain["sceneItemTransform"]["sourceWidth"]  # original width of the source
-        transform["sourceHeight"] = response.datain["sceneItemTransform"][
-            "sourceHeight"]  # original width of the source
-        transform["width"] = response.datain["sceneItemTransform"][
-            "width"]  # current width of the source after scaling, not including cropping. If the source has been flipped horizontally, this number will be negative.
-        transform["height"] = response.datain["sceneItemTransform"][
-            "height"]  # current height of the source after scaling, not including cropping. If the source has been flipped vertically, this number will be negative.
-        transform["cropLeft"] = response.datain["sceneItemTransform"][
-            "cropLeft"]  # the amount cropped off the *original source width*. This is NOT scaled, must multiply by scaleX to get current # of cropped pixels
-        transform["cropRight"] = response.datain["sceneItemTransform"][
-            "cropRight"]  # the amount cropped off the *original source width*. This is NOT scaled, must multiply by scaleX to get current # of cropped pixels
-        transform["cropTop"] = response.datain["sceneItemTransform"][
-            "cropTop"]  # the amount cropped off the *original source height*. This is NOT scaled, must multiply by scaleY to get current # of cropped pixels
-        transform["cropBottom"] = response.datain["sceneItemTransform"][
-            "cropBottom"]  # the amount cropped off the *original source height*. This is NOT scaled, must multiply by scaleY to get current # of cropped pixels
+        transform["sourceHeight"] = response.datain["sceneItemTransform"]["sourceHeight"]  # original width of the source
+        transform["width"] = response.datain["sceneItemTransform"]["width"]  # current width of the source after scaling, not including cropping. If the source has been flipped horizontally, this number will be negative.
+        transform["height"] = response.datain["sceneItemTransform"]["height"]  # current height of the source after scaling, not including cropping. If the source has been flipped vertically, this number will be negative.
+        transform["cropLeft"] = response.datain["sceneItemTransform"]["cropLeft"]  # the amount cropped off the *original source width*. This is NOT scaled, must multiply by scaleX to get current # of cropped pixels
+        transform["cropRight"] = response.datain["sceneItemTransform"]["cropRight"]  # the amount cropped off the *original source width*. This is NOT scaled, must multiply by scaleX to get current # of cropped pixels
+        transform["cropTop"] = response.datain["sceneItemTransform"]["cropTop"]  # the amount cropped off the *original source height*. This is NOT scaled, must multiply by scaleY to get current # of cropped pixels
+        transform["cropBottom"] = response.datain["sceneItemTransform"]["cropBottom"]  # the amount cropped off the *original source height*. This is NOT scaled, must multiply by scaleY to get current # of cropped pixels
         return transform
 
     # The transform should be a dictionary containing any of the following keys with corresponding values
@@ -110,21 +101,18 @@ class OBSWebsocketsManager:
 
 obswebsockets_manager = OBSWebsocketsManager()
 
-def raid(channel, raidnum):
-    obswebsockets_manager.set_source_visibility('Scene', "Raid", False)
+def gameTest(username, story):
+    obswebsockets_manager.set_text("Story", f"story: {story}")
+    obswebsockets_manager.set_scene("Twitch Plays")
     time.sleep(1)
-    obswebsockets_manager.set_text("Raid Message", f"Raid by {channel} with {raidnum} raiders")
-    time.sleep(1)
-    obswebsockets_manager.set_source_visibility('Scene', "Raid", True)
-    time.sleep(15)
-    obswebsockets_manager.set_source_visibility('Scene', "Raid", False)
-    time.sleep(1)
+
+    time.sleep(5)
+    obswebsockets_manager.set_scene("Scene-Code")
 
 def main():
     print("Connecting to OBS Websockets")
     obswebsockets_manager = OBSWebsocketsManager()
-    # raid("sudostyle", 5)
-    # this works
+    gameTest("sudostyle", "In a world")
 
 if __name__ == '__main__':
     main()
