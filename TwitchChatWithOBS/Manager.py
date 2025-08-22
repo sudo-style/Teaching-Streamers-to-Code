@@ -68,15 +68,14 @@ class Manager:
 def main():
     manager = Manager()
 
-    chatMessages = ["Hi", "this", "is", "a", "test", "message"]
-    for chatMessage in chatMessages:
+    chatMessages = ["!tts hello world", "!join", "sussy", "big boi", "!unjoin", "shouldn't show"]
+    usernames = ["sudostyle","sudostyle","sudostyle","sudostyle","sudostyle","sudostyle"]
+
+    for username, chatMessage in zip(usernames, chatMessages):
         cleanedMessage = chatMessage.strip()
-        manager.addMessage(cleanedMessage)
-
+        manager.checkMessage(username, cleanedMessage)
+        print(cleanedMessage)
         time.sleep(1)
-        manager.showStory()
-
-    print(manager.data)
 
 if __name__ == '__main__':
     main()
