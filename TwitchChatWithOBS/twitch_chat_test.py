@@ -40,9 +40,9 @@ while True:
             message = trailing.split(" :", 1)[1]
 
 
-            manager.addMessage(message)
-            time.sleep(1)
-            manager.showStory()
+            manager.checkMessage(username, message)
+            #time.sleep(1)
+            #manager.showStory()
 
         except Exception as e:
             print("Error parsing message:", resp, e)
