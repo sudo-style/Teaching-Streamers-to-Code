@@ -41,6 +41,8 @@ while True:
 
 
             manager.checkMessage(username, message)
+            #manager.save_chat_message(username, message)
+            manager.save_chat_messages()
             #time.sleep(1)
             #manager.showStory()
 
