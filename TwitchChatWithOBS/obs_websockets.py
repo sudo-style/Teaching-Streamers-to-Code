@@ -112,7 +112,14 @@ def gameTest(username, story):
 def main():
     print("Connecting to OBS Websockets")
     obswebsockets_manager = OBSWebsocketsManager()
-    gameTest("sudostyle", "In a world")
+    #gameTest("sudostyle", "In a world")
+
+    obswebsockets_manager.set_scene("RENAME SCENE")
+    time.sleep(1)
+    obswebsockets_manager.set_filter_visibility("Video Capture Device", "Time Warp Scan", True)
+    time.sleep(15)
+    obswebsockets_manager.set_filter_visibility("Video Capture Device", "Time Warp Scan", False)
+
 
 if __name__ == '__main__':
     main()

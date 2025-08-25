@@ -196,3 +196,7 @@ Toilet Flush.mp3
 /.idea/Teaching-Streamers-to-Code.iml
 /.idea/vcs.xml
 /chat_log.jsonl
+
+
+/TwitchChatWithOBS
+chat_log.jsonl
